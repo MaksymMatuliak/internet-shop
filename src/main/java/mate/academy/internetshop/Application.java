@@ -3,8 +3,12 @@ package mate.academy.internetshop;
 import java.math.BigDecimal;
 import java.util.List;
 import mate.academy.internetshop.lib.Injector;
+import mate.academy.internetshop.model.Order;
 import mate.academy.internetshop.model.Product;
+import mate.academy.internetshop.model.User;
+import mate.academy.internetshop.service.OrderService;
 import mate.academy.internetshop.service.ProductService;
+import mate.academy.internetshop.service.UserService;
 
 public class Application {
     private static Injector injector = Injector.getInstance("mate.academy.internetshop");
@@ -24,5 +28,13 @@ public class Application {
         for (Product p : listOfProducts) {
             System.out.println(p.toString());
         }
+        UserService userService = (UserService) injector.getInstance(UserService.class);
+        User userMaks = new User("Maksym");
+        userService.create(userMaks);
+        userService.getAll().stream().forEach(System.out::println);
+        OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
+        Order orderOfMaksym = new Order(userMaks, listOfProducts);
+        orderService.completeOrder(listOfProducts, userMaks);
+        orderService.getAll().stream().forEach(System.out::println);
     }
 }

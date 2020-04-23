@@ -11,14 +11,14 @@ import mate.academy.internetshop.model.Product;
 public class ProductDaoImpl implements ProductDao {
     @Override
     public Product create(Product product) {
-        Storage.products.add(product);
+        Storage.addProduct(product);
         return product;
     }
 
     @Override
     public Optional<Product> get(Long id) {
         return Storage.products.stream()
-                .filter(i -> i.getId().equals(id))
+                .filter(p -> p.getId().equals(id))
                 .findFirst();
     }
 
@@ -39,7 +39,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public boolean delete(Long id) {
-        return Storage.products.removeIf(product -> product.getId().equals(id));
+        return Storage.products.removeIf(p -> p.getId().equals(id));
     }
 
     @Override
