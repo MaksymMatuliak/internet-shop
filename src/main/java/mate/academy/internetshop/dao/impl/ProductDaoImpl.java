@@ -30,7 +30,7 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public Product update(Product product) {
         for (Product p: Storage.products) {
-            if (product.getId() == p.getId()) {
+            if (product.getId().equals(p.getId())) {
                 p = product;
             }
         }
@@ -39,7 +39,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public boolean delete(Long id) {
-        return Storage.products.remove(get(id));
+        return Storage.products.removeIf(product -> product.getId().equals(id));
     }
 
     @Override
