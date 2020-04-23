@@ -2,13 +2,9 @@
 <checkstyle version="8.29">
 <file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\Application.java">
 </file>
-<file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\dao\BucketDao.java">
+<file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\dao\impl\ProductDaoImpl.java">
 </file>
-<file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\dao\impl\BucketDaoImpl.java">
-</file>
-<file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\dao\impl\ItemDaoImpl.java">
-</file>
-<file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\dao\ItemDao.java">
+<file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\dao\ProductDao.java">
 </file>
 <file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\db\Storage.java">
 </file>
@@ -22,20 +18,14 @@
 </file>
 <file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\model\Bucket.java">
 </file>
-<file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\model\Item.java">
-</file>
 <file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\model\Order.java">
+</file>
+<file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\model\Product.java">
 </file>
 <file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\model\User.java">
 </file>
-<file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\service\BucketService.java">
+<file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\service\impl\ProductServiceImpl.java">
 </file>
-<file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\service\impl\BucketServiceImpl.java">
-</file>
-<file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\service\impl\ItemServiceImpl.java">
-<error line="4" severity="error" message="Wrong lexicographical order for &apos;java.util.List&apos; import. Should be before &apos;java.util.stream.Collectors&apos;." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
-</file>
-<file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\service\ItemService.java">
-<error line="4" severity="error" message="Wrong lexicographical order for &apos;java.util.List&apos; import. Should be before &apos;mate.academy.internetshop.model.Item&apos;." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
+<file name="C:\Users\maksy\IdeaProjects\internet-shop\src\main\java\mate\academy\internetshop\service\ProductService.java">
 </file>
 </checkstyle>

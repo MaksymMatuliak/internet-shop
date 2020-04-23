@@ -1,12 +1,10 @@
 package mate.academy.internetshop;
 
+import java.math.BigDecimal;
+import java.util.List;
 import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.service.ProductService;
-import mate.academy.internetshop.service.impl.ProductServiceImpl;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 public class Application {
     private static Injector injector = Injector.getInstance("mate.academy.internetshop");

@@ -44,10 +44,6 @@ public class Bucket {
 
     @Override
     public String toString() {
-        return "Bucket{" +
-                "user=" + user +
-                ", products=" + products +
-                ", id=" + id +
-                '}';
+        return "Bucket{" + "user=" + user + ", products=" + products + ", id=" + id + '}';
     }
 }
