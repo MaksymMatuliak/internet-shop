@@ -2,23 +2,20 @@ package mate.academy.internetshop.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import mate.academy.internetshop.db.Storage;
 
 public class Bucket {
     private User user;
-    private List<Item> items = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
     private Long id;
 
     public Bucket() {
         this.user = null;
-        this.items = null;
-        this.id = Storage.getId();
+        this.products = null;
     }
 
-    public Bucket(User user, List<Item> items) {
+    public Bucket(User user, List<Product> products) {
         this.user = user;
-        this.items = items;
-        this.id = Storage.getId();
+        this.products = products;
     }
 
     public User getUser() {
@@ -29,12 +26,12 @@ public class Bucket {
         this.user = user;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public Long getId() {
@@ -43,5 +40,14 @@ public class Bucket {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Bucket{" +
+                "user=" + user +
+                ", products=" + products +
+                ", id=" + id +
+                '}';
     }
 }

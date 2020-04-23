@@ -1,26 +1,20 @@
 package mate.academy.internetshop.model;
 
 import java.math.BigDecimal;
-import mate.academy.internetshop.db.Storage;
 
-public class Item {
+public class Product {
     private Long id;
     private String name;
     private BigDecimal price;
-    private int count;
 
-    public Item() {
-        this.id = Storage.getId();
+    public Product() {
         this.name = null;
         this.price = null;
-        this.count = 0;
     }
 
-    public Item(String name, BigDecimal price, int count) {
-        this.id = Storage.getId();
+    public Product(String name, BigDecimal price) {
         this.name = name;
         this.price = price;
-        this.count = count;
     }
 
     public Long getId() {
@@ -47,11 +41,12 @@ public class Item {
         this.price = price;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

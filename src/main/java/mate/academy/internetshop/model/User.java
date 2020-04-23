@@ -1,22 +1,8 @@
 package mate.academy.internetshop.model;
 
-import java.util.Set;
-import javax.management.relation.Role;
-
 public class User {
-    private Long id;
     private String name;
-    private String login;
-    private String password;
-    private Set<Role> roles;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private Long id;
 
     public String getName() {
         return name;
@@ -26,27 +12,19 @@ public class User {
         this.name = name;
     }
 
-    public String getLogin() {
-        return login;
+    public Long getId() {
+        return id;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
