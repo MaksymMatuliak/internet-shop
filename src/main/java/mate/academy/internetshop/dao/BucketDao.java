@@ -14,6 +14,4 @@ public interface BucketDao {
     Bucket update(Bucket bucket);
 
     boolean delete(Long id);
-
-    boolean delete(Bucket bucket);
 }

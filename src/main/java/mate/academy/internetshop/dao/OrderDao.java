@@ -14,6 +14,4 @@ public interface OrderDao {
     Order update(Order order);
 
     boolean delete(Long id);
-
-    boolean delete(Order order);
 }
