@@ -34,11 +34,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public boolean delete(Product product) {
-        return productDao.delete(product.getId());
-    }
-
-    @Override
     public List<Product> getAll() {
         return Storage.products;
     }
