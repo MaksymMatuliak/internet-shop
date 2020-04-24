@@ -29,9 +29,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User update(User user) {
-        for (User u: Storage.users) {
-            if (u.getId().equals(u.getId())) {
-                u = user;
+        for (User userInStorage: Storage.users) {
+            if (userInStorage.getId().equals(userInStorage.getId())) {
+                userInStorage = user;
             }
         }
         return user;

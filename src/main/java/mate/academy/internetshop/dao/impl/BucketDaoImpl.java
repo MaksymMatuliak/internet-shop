@@ -27,9 +27,9 @@ public class BucketDaoImpl implements BucketDao {
 
     @Override
     public Bucket update(Bucket bucket) {
-        for (Bucket b: Storage.buckets) {
-            if (bucket.getId().equals(b.getId())) {
-                b = bucket;
+        for (Bucket bucketInStorage: Storage.buckets) {
+            if (bucket.getId().equals(bucketInStorage.getId())) {
+                bucketInStorage = bucket;
             }
         }
         return bucket;
