@@ -8,11 +8,6 @@ public class Bucket {
     private List<Product> products = new ArrayList<>();
     private Long id;
 
-    public Bucket() {
-        this.user = null;
-        this.products = null;
-    }
-
     public Bucket(User user, List<Product> products) {
         this.user = user;
         this.products = products;

@@ -28,6 +28,7 @@ public class BucketServiceImpl implements BucketService {
 
     @Override
     public void clear(Bucket bucket) {
+        bucket.getProducts().removeAll(bucket.getProducts());
         bucketDao.update(bucket);
     }
 
