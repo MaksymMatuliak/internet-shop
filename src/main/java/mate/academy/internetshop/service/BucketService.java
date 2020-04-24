@@ -4,7 +4,7 @@ import java.util.List;
 import mate.academy.internetshop.model.Bucket;
 import mate.academy.internetshop.model.Product;
 
-public interface BucketService{
+public interface BucketService {
 
     Bucket addProduct(Bucket bucket, Product product);
 
