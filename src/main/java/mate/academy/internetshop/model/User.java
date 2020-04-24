@@ -4,6 +4,10 @@ public class User {
     private String name;
     private Long id;
 
+    public User(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
