@@ -56,4 +56,22 @@
         <servlet-name>deleteUser</servlet-name>
         <url-pattern>/deleteUser</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>buyProduct</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.BuyProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>buyProduct</servlet-name>
+        <url-pattern>/buyProduct</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>bucket</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.BucketController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>bucket</servlet-name>
+        <url-pattern>/bucket</url-pattern>
+    </servlet-mapping>
 </web-app>

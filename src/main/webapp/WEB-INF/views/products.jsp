@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>All users</title>
+    <title>All products</title>
 </head>
 <body>
 <table border="1">
@@ -21,9 +21,6 @@
             </td>
             <td>
                 <c:out value="${product.price}"/>
-            </td>
-            <td>
-                <a href="/internet_shop_war_exploded/addProduct?productId=${product.id}">BUY</a>
             </td>
         </tr>
     </c:forEach>
