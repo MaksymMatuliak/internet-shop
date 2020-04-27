@@ -11,7 +11,7 @@
         <th>NAME</th>
         <th>PRICE</th>
     </tr>
-    <c:forEach var="product" items="${product}">
+    <c:forEach var="product" items="${products}">
         <tr>
             <td>
                 <c:out value="${product.id}"/>

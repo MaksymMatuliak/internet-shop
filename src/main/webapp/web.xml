@@ -40,6 +40,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>create-product</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.CreateProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>create-product</servlet-name>
+        <url-pattern>/create-product</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>deleteUser</servlet-name>
         <servlet-class>mate.academy.internetshop.controllers.DeleteUserController</servlet-class>
     </servlet>
