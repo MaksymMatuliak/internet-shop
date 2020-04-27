@@ -23,7 +23,7 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="/internet_shop_war_exploded/addProduct?productId=${product.id}">BUY</a>
+                <a href="/internet_shop_war_exploded/buyProduct?productId=${product.id}">BUY</a>
             </td>
         </tr>
     </c:forEach>
