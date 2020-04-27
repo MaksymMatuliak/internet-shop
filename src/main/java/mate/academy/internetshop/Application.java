@@ -24,7 +24,6 @@ public class Application {
         productService.create(product);
         productService.create(product2);
         productService.create(product3);
-        productService.delete(product);
         product2.setPrice(new BigDecimal(100_000));
         productService.update(product2);
         List<Product> listOfProducts = productService.getAll();

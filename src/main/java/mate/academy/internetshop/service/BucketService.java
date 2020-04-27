@@ -5,6 +5,7 @@ import mate.academy.internetshop.model.Bucket;
 import mate.academy.internetshop.model.Product;
 
 public interface BucketService {
+
     Bucket addProduct(Bucket bucket, Product product);
 
     boolean deleteProduct(Bucket bucket, Product product);
