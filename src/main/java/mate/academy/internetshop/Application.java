@@ -32,7 +32,7 @@ public class Application {
         }
         UserService userService = (UserService) injector.getInstance(UserService.class);
         BucketService bucketService = (BucketService) injector.getInstance(BucketService.class);
-        User userMaks = new User("Maksym");
+        User userMaks = new User("Maksym", "123");
         Bucket bucketOfMaks = new Bucket(userMaks, new ArrayList<>());
         userService.create(userMaks);
         userService.getAll().stream().forEach(System.out::println);
