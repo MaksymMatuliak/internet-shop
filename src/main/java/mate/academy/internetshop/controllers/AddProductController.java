@@ -26,7 +26,7 @@ public class AddProductController extends HttpServlet {
             throws ServletException, IOException {
         String name = req.getParameter("name");
         String price = req.getParameter("price");
-        productService.create(new Product(name, new BigDecimal(Integer.parseInt(price))));
+        productService.create(new Product(name, new BigDecimal(price)));
         resp.sendRedirect(req.getContextPath() + "/products/all");
     }
 }
