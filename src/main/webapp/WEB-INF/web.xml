@@ -54,16 +54,34 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteUser</servlet-name>
-        <url-pattern>/deleteUser</url-pattern>
+        <url-pattern>/delete-user</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>buyProduct</servlet-name>
+        <servlet-name>addProduct</servlet-name>
         <servlet-class>mate.academy.internetshop.controllers.AddProductToShoppingCartController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>buyProduct</servlet-name>
-        <url-pattern>/buyProduct</url-pattern>
+        <servlet-name>addProduct</servlet-name>
+        <url-pattern>/add-product</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteProduct</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.DeleteProductFromShoppingCartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteProduct</servlet-name>
+        <url-pattern>/delete-product</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>completeOrder</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.CompleteOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>completeOrder</servlet-name>
+        <url-pattern>/complete-order</url-pattern>
     </servlet-mapping>
 
     <servlet>

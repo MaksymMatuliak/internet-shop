@@ -10,6 +10,7 @@
         <th>ID</th>
         <th>NAME</th>
         <th>PRICE</th>
+        <th>DELETE</th>
     </tr>
     <c:forEach var="product" items="${products}">
         <tr>
@@ -22,8 +23,12 @@
             <td>
                 <c:out value="${product.price}"/>
             </td>
+            <td>
+                <a href="/internet_shop_war_exploded/delete-product?productId=${product.id}">DELETE</a>
+            </td>
         </tr>
     </c:forEach>
 </table>
+<a href="/internet_shop_war_exploded/complete-order?shoppingCartId=${shoppingCartId}">COMPLETE</a>
 </body>
 </html>

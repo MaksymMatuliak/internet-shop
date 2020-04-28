@@ -10,6 +10,7 @@
         <th>ID</th>
         <th>NAME</th>
         <th>PRICE</th>
+        <th>ADD</th>
     </tr>
     <c:forEach var="product" items="${products}">
         <tr>
@@ -23,7 +24,7 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="/internet_shop_war_exploded/buyProduct?productId=${product.id}">BUY</a>
+                <a href="/internet_shop_war_exploded/add-product?productId=${product.id}">ADD</a>
             </td>
         </tr>
     </c:forEach>
