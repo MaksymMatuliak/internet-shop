@@ -4,14 +4,19 @@ import java.util.List;
 import mate.academy.internetshop.dao.ShoppingCartDao;
 import mate.academy.internetshop.lib.Inject;
 import mate.academy.internetshop.lib.Service;
-import mate.academy.internetshop.model.ShoppingCart;
 import mate.academy.internetshop.model.Product;
+import mate.academy.internetshop.model.ShoppingCart;
 import mate.academy.internetshop.service.ShoppingCartService;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Inject
     private ShoppingCartDao shoppingCartDao;
+
+    @Override
+    public ShoppingCart create(ShoppingCart shoppingCart) {
+        return shoppingCartDao.create(shoppingCart);
+    }
 
     @Override
     public ShoppingCart addProduct(ShoppingCart shoppingCart, Product product) {
