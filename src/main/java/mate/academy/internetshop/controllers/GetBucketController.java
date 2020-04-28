@@ -11,7 +11,7 @@ import mate.academy.internetshop.model.Bucket;
 import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.service.BucketService;
 
-public class BucketController extends HttpServlet {
+public class GetBucketController extends HttpServlet {
     private static final Long USER_ID = 1L;
 
     private static final Injector injector = Injector.getInstance("mate.academy");

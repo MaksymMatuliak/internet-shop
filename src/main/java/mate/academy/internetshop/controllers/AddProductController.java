@@ -10,7 +10,7 @@ import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.service.ProductService;
 
-public class CreateProductController extends HttpServlet {
+public class AddProductController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("mate.academy");
     private ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);

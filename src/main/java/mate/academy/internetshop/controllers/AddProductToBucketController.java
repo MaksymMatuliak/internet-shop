@@ -16,7 +16,7 @@ import mate.academy.internetshop.model.User;
 import mate.academy.internetshop.service.BucketService;
 import mate.academy.internetshop.service.ProductService;
 
-public class BuyProductController extends HttpServlet {
+public class AddProductToBucketController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("mate.academy");
     private BucketService bucketService =
             (BucketService) injector.getInstance(BucketService.class);
