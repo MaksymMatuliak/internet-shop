@@ -3,12 +3,12 @@ package mate.academy.internetshop.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bucket {
+public class ShoppingCart {
     private User user;
     private List<Product> products = new ArrayList<>();
     private Long id;
 
-    public Bucket(User user, List<Product> products) {
+    public ShoppingCart(User user, List<Product> products) {
         this.user = user;
         this.products = products;
     }
