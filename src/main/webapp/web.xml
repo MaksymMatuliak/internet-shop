@@ -59,7 +59,7 @@
 
     <servlet>
         <servlet-name>buyProduct</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.AddProductToBucketController</servlet-class>
+        <servlet-class>mate.academy.internetshop.controllers.AddProductToShoppingCartController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>buyProduct</servlet-name>
@@ -67,11 +67,11 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>bucket</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.GetBucketController</servlet-class>
+        <servlet-name>shoppingCart</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.GetShoppingCartController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>bucket</servlet-name>
-        <url-pattern>/bucket</url-pattern>
+        <servlet-name>shoppingCart</servlet-name>
+        <url-pattern>/shoppingCart</url-pattern>
     </servlet-mapping>
 </web-app>

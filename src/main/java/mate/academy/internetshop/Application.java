@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import mate.academy.internetshop.lib.Injector;
-import mate.academy.internetshop.model.Bucket;
+import mate.academy.internetshop.model.ShoppingCart;
 import mate.academy.internetshop.model.Order;
 import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.model.User;
-import mate.academy.internetshop.service.BucketService;
+import mate.academy.internetshop.service.ShoppingCartService;
 import mate.academy.internetshop.service.OrderService;
 import mate.academy.internetshop.service.ProductService;
 import mate.academy.internetshop.service.UserService;
@@ -31,9 +31,9 @@ public class Application {
             System.out.println(p.toString());
         }
         UserService userService = (UserService) injector.getInstance(UserService.class);
-        BucketService bucketService = (BucketService) injector.getInstance(BucketService.class);
+        ShoppingCartService shoppingCartService = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
         User userMaks = new User("Maksym", "123");
-        Bucket bucketOfMaks = new Bucket(userMaks, new ArrayList<>());
+        ShoppingCart shoppingCartOfMaks = new ShoppingCart(userMaks, new ArrayList<>());
         userService.create(userMaks);
         userService.getAll().stream().forEach(System.out::println);
         OrderService orderService = (OrderService) injector.getInstance(OrderService.class);

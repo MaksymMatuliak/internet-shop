@@ -8,7 +8,7 @@ import mate.academy.internetshop.lib.Service;
 import mate.academy.internetshop.model.Order;
 import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.model.User;
-import mate.academy.internetshop.service.BucketService;
+import mate.academy.internetshop.service.ShoppingCartService;
 import mate.academy.internetshop.service.OrderService;
 
 @Service
@@ -16,11 +16,11 @@ public class OrderServiceImpl implements OrderService {
     @Inject
     private OrderDao orderDao;
     @Inject
-    private BucketService bucketService;
+    private ShoppingCartService shoppingCartService;
 
     @Override
     public Order completeOrder(List<Product> products, User user) {
-        bucketService.clear(bucketService.getByUserId(user.getId()));
+        shoppingCartService.clear(shoppingCartService.getByUserId(user.getId()));
         return orderDao.create(new Order(user, products));
     }
 
