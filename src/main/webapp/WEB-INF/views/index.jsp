@@ -10,5 +10,7 @@
 <h2 align="center"><a href="/internet_shop_war_exploded/products/all">All products</a></h2>
 <h2 align="center"><a href="/internet_shop_war_exploded/shoppingCart">Shopping Cart</a></h2>
 <h2 align="center"><a href="/internet_shop_war_exploded/create-product">Create product</a></h2>
+<h2 align="center"><a href="/internet_shop_war_exploded/orders/all">Orders</a></h2>
+<h2 align="center"><a href="/internet_shop_war_exploded/products/admin/all">Products for admin</a></h2>
 </body>
 </html>

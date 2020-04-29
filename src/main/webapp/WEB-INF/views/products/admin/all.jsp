@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>All products</title>
+    <title>All users</title>
 </head>
 <body>
 <table border="1">
@@ -24,11 +24,11 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="/internet_shop_war_exploded/delete-product-from-shopping-cart?productId=${product.id}">DELETE</a>
+                <a href="/internet_shop_war_exploded/delete-product?productId=${product.id}">DELETE</a>
             </td>
         </tr>
     </c:forEach>
 </table>
-<a href="/internet_shop_war_exploded/complete-order?shoppingCartId=${shoppingCartId}">COMPLETE</a>
+<a href="/internet_shop_war_exploded/create-product">CREATE</a>
 </body>
 </html>
