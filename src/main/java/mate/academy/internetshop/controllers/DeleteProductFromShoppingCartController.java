@@ -16,13 +16,13 @@ public class DeleteProductFromShoppingCartController extends HttpServlet {
     private ProductService productService =
             (ProductService) INJECTOR.getInstance(ProductService.class);
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String productId = req.getParameter("productId");
         String userId = req.getParameter("userId");
-        shoppingCartService.deleteProduct(shoppingCartService.getByUserId(1L), productService.get(Long.valueOf(productId)));
+        shoppingCartService.deleteProduct(shoppingCartService.getByUserId(1L),
+                productService.get(Long.valueOf(productId)));
         resp.sendRedirect(req.getContextPath() + "/shoppingCart");
     }
 }

@@ -4,13 +4,14 @@
     <title>InternetShop</title>
 </head>
 <body>
-<h1 align="center">Menu</h1>
+<h1 align="center">Menu for users</h1>
 <h2 align="center"><a href="/internet_shop_war_exploded/registration">Register</a></h2>
-<h2 align="center"><a href="/internet_shop_war_exploded/users/all">All users</a></h2>
 <h2 align="center"><a href="/internet_shop_war_exploded/products/all">All products</a></h2>
 <h2 align="center"><a href="/internet_shop_war_exploded/shoppingCart">Shopping Cart</a></h2>
-<h2 align="center"><a href="/internet_shop_war_exploded/create-product">Create product</a></h2>
 <h2 align="center"><a href="/internet_shop_war_exploded/orders/all">Orders</a></h2>
-<h2 align="center"><a href="/internet_shop_war_exploded/products/admin/all">Products for admin</a></h2>
+<h1 align="center">Menu for admin</h1>
+<h2 align="center"><a href="/internet_shop_war_exploded/products/admin/all">Products</a></h2>
+<h2 align="center"><a href="/internet_shop_war_exploded/create-product">Create product</a></h2>
+<h2 align="center"><a href="/internet_shop_war_exploded/users/all">All users</a></h2>
 </body>
 </html>

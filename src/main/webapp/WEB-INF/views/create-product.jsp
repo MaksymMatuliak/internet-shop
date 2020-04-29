@@ -10,5 +10,6 @@
     Price: <input type="text" name="price">
     <button type="submit">Done</button>
 </form>
+<button><a href="/internet_shop_war_exploded/">Home</a></button>
 </body>
 </html>
