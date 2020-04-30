@@ -8,7 +8,7 @@
     <table border="1">
         <tr>
             <th>ID</th>
-            <th>NAME</th>
+            <th>LOGIN</th>
             <th>DELETE</th>
         </tr>
         <c:forEach var="user" items="${users}">
@@ -17,7 +17,7 @@
                     <c:out value="${user.id}"/>
                 </td>
                 <td>
-                    <c:out value="${user.name}"/>
+                    <c:out value="${user.login}"/>
                 </td>
                 <td>
                     <a href="/internet_shop_war_exploded/delete-user?userId=${user.id}">DELETE</a>
