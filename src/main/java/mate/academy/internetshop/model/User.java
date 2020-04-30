@@ -1,21 +1,31 @@
 package mate.academy.internetshop.model;
 
 public class User {
+    private String name;
     private String login;
     private Long id;
     private String password;
 
-    public User(String name, String password) {
-        this.login = name;
+    public User(String name, String login, String password) {
+        this.name = name;
+        this.login = login;
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String name) {
-        this.login = name;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public Long getId() {

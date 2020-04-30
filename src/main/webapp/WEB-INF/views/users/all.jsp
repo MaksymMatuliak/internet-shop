@@ -8,6 +8,7 @@
     <table border="1">
         <tr>
             <th>ID</th>
+            <th>NAME</th>
             <th>LOGIN</th>
             <th>DELETE</th>
         </tr>
@@ -15,6 +16,9 @@
             <tr>
                 <td>
                     <c:out value="${user.id}"/>
+                </td>
+                <td>
+                    <c:out value="${user.name}"/>
                 </td>
                 <td>
                     <c:out value="${user.login}"/>
