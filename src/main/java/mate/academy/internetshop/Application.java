@@ -33,7 +33,7 @@ public class Application {
         UserService userService = (UserService) injector.getInstance(UserService.class);
         ShoppingCartService shoppingCartService =
                 (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
-        User userMaks = new User("Maksym", "123");
+        User userMaks = new User("Maksym", "Maks333", "123");
         ShoppingCart shoppingCartOfMaks = new ShoppingCart(userMaks, new ArrayList<>());
         userService.create(userMaks);
         userService.getAll().stream().forEach(System.out::println);

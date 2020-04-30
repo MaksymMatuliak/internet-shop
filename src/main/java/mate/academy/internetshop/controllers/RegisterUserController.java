@@ -28,12 +28,13 @@ public class RegisterUserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        String name = req.getParameter("name");
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         String passwordRepeat = req.getParameter("password-repeat");
         if (password.equals(passwordRepeat)) {
             shoppingCartService.create(new ShoppingCart(userService.create(
-                    new User(login, password)), new LinkedList<Product>()));
+                    new User(name, login, password)), new LinkedList<Product>()));
             resp.sendRedirect(req.getContextPath() + '/');
         } else {
             req.setAttribute("message", "Passwords are not the same!");
