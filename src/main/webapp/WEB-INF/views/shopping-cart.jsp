@@ -31,6 +31,6 @@
 </table>
 <h1></h1>
 <button><a href="/internet_shop_war_exploded/">Home</a></button>
-<button><a href="/internet_shop_war_exploded/complete-order?shoppingCartId=${shoppingCartId}">COMPLETE</a></button>
+<button><a href="/internet_shop_war_exploded/complete-order?shoppingCartId=${shoppingCartId}">Complete</a></button>
 </body>
 </html>
