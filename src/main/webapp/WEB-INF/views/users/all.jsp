@@ -20,10 +20,11 @@
                     <c:out value="${user.name}"/>
                 </td>
                 <td>
-                    <a href="/internet_shop_war_exploded/deleteUser?userId=${user.id}">DELETE</a>
+                    <a href="/internet_shop_war_exploded/delete-user?userId=${user.id}">DELETE</a>
                 </td>
             </tr>
         </c:forEach>
     </table>
+    <button><a href="/internet_shop_war_exploded/">Home</a></button>
 </body>
 </html>

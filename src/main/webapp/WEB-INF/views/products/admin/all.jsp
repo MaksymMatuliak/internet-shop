@@ -10,7 +10,7 @@
         <th>ID</th>
         <th>NAME</th>
         <th>PRICE</th>
-        <th>ADD</th>
+        <th>DELETE</th>
     </tr>
     <c:forEach var="product" items="${products}">
         <tr>
@@ -24,11 +24,12 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="/internet_shop_war_exploded/add-product?productId=${product.id}">ADD</a>
+                <a href="/internet_shop_war_exploded/delete-product?productId=${product.id}">DELETE</a>
             </td>
         </tr>
     </c:forEach>
 </table>
 <button><a href="/internet_shop_war_exploded/">Home</a></button>
+<button><a href="/internet_shop_war_exploded/create-product">CREATE</a></button>
 </body>
 </html>
