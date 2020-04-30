@@ -29,7 +29,8 @@
         </tr>
     </c:forEach>
 </table>
+<h1></h1>
 <button><a href="/internet_shop_war_exploded/">Home</a></button>
-<button><a href="/internet_shop_war_exploded/create-product">CREATE</a></button>
+<button><a href="/internet_shop_war_exploded/create-product">Create</a></button>
 </body>
 </html>

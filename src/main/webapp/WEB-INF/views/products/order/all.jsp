@@ -25,5 +25,7 @@
         </tr>
     </c:forEach>
 </table>
+<h1></h1>
+<button><a href="/internet_shop_war_exploded/">Home</a></button>
 </body>
 </html>

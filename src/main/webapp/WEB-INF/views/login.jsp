@@ -10,6 +10,7 @@
         Login: <input type="text" name="login">
         Password: <input type="password" name="password">
         <button type="submit">Login</button>
+        <button><a href="/internet_shop_war_exploded/registration">Register</a></button>
     </form>
 </body>
 </html>
