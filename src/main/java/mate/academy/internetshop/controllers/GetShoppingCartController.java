@@ -12,8 +12,6 @@ import mate.academy.internetshop.model.ShoppingCart;
 import mate.academy.internetshop.service.ShoppingCartService;
 
 public class GetShoppingCartController extends HttpServlet {
-    private static final Long USER_ID = 1L;
-
     private static final Injector INJECTOR = Injector.getInstance("mate.academy");
     private ShoppingCartService shoppingCartService =
             (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
@@ -21,10 +19,11 @@ public class GetShoppingCartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        ShoppingCart shoppingCart = shoppingCartService.getByUserId(USER_ID);
-        List<Product> allProducts = shoppingCartService.getByUserId(USER_ID).getProducts();
+        Long userId = (Long) req.getSession().getAttribute("userId");
+        ShoppingCart shoppingCart = shoppingCartService.getByUserId(userId);
+        List<Product> allProducts = shoppingCart.getProducts();
         req.setAttribute("products", allProducts);
-        req.setAttribute("shoppingCartId", shoppingCartService.getByUserId(USER_ID).getId());
+        req.setAttribute("shoppingCartId", shoppingCart.getId());
         req.getRequestDispatcher("/WEB-INF/views/shopping-cart.jsp").forward(req, resp);
     }
 }
