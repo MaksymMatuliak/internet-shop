@@ -24,13 +24,13 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="/internet_shop_war_exploded/shopping-cart/delete?productId=${product.id}">DELETE</a>
+                <a href="/internet_shop_war_exploded/shopping-cart/product/delete?productId=${product.id}">DELETE</a>
             </td>
         </tr>
     </c:forEach>
 </table>
 <h1></h1>
 <button><a href="/internet_shop_war_exploded/">Home</a></button>
-<button><a href="/internet_shop_war_exploded/complete-order?shoppingCartId=${shoppingCartId}">Complete</a></button>
+<button><a href="/internet_shop_war_exploded/shopping-cart/order/complete?shoppingCartId=${shoppingCartId}">Complete</a></button>
 </body>
 </html>

@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Create product: </h1>
-<form method="post" action="${pageContext.request.contextPath}/create-product">
+<form method="post" action="${pageContext.request.contextPath}/admin/create-product">
     Name: <input type="text" name="name">
     Price: <input type="text" name="price">
     <button type="submit">Done</button>

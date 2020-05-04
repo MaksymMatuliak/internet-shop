@@ -28,7 +28,7 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="/internet_shop_war_exploded/add-product?productId=${product.id}">ADD</a>
+                <a href="/internet_shop_war_exploded/shopping-cart/product/add?productId=${product.id}">ADD</a>
             </td>
         </tr>
     </tbody>

@@ -26,6 +26,6 @@ public class CompleteOrderController extends HttpServlet {
         String userId = req.getParameter("userId");
         orderService.completeOrder(shoppingCartService.getAllProducts(
                 shoppingCartService.getByUserId(1L)), userService.get(1L));
-        resp.sendRedirect(req.getContextPath() + "/orders/all");
+        resp.sendRedirect(req.getContextPath() + "/orders");
     }
 }
