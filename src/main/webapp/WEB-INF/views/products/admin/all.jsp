@@ -24,7 +24,7 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="/internet_shop_war_exploded/delete-product?productId=${product.id}">DELETE</a>
+                <a href="/internet_shop_war_exploded/product/delete?productId=${product.id}">DELETE</a>
             </td>
         </tr>
     </c:forEach>
