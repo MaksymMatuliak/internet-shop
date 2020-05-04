@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.service.ProductService;
 import mate.academy.internetshop.service.ShoppingCartService;
@@ -19,9 +20,10 @@ public class DeleteProductFromShoppingCartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        Long userId = (Long) session.getAttribute("userId");
         String productId = req.getParameter("productId");
-        String userId = req.getParameter("userId");
-        shoppingCartService.deleteProduct(shoppingCartService.getByUserId(1L),
+        shoppingCartService.deleteProduct(shoppingCartService.getByUserId(userId),
                 productService.get(Long.valueOf(productId)));
         resp.sendRedirect(req.getContextPath() + "/shoppingCart");
     }
