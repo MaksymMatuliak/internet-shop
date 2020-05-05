@@ -11,6 +11,14 @@
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
+        <h2 align="center"><a href="/internet_shop_war_exploded/login" style="color: black">Login</a></h2>
+    </div>
+
+    <div class="p-3 mb-2 bg-light text-dark">
+        <h2 align="center"><a href="/internet_shop_war_exploded/registration" style="color: black">Register</a></h2>
+    </div>
+
+    <div class="p-3 mb-2 bg-light text-dark">
         <h2 align="center"><a href="/internet_shop_war_exploded/products" style="color: black">All products</a></h2>
     </div>
 
@@ -24,6 +32,26 @@
 
     <div class="p-3 mb-2 bg-light text-dark">
         <h2 align="center"><a href="/internet_shop_war_exploded/logout" style="color: black">Logout</a></h2>
+    </div>
+
+    <div class="p-3 mb-2 bg-secondary text-white">
+        <h1 align="center" style="color: black"><b>Menu for admin</b></h1>
+    </div>
+
+    <div class="p-3 mb-2 bg-light text-dark">
+        <h2 align="center"><a href="/internet_shop_war_exploded/admin/inject" style="color: black">Inject</a></h2>
+    </div>
+
+    <div class="p-3 mb-2 bg-light text-dark">
+        <h2 align="center"><a href="/internet_shop_war_exploded/admin/products" style="color: black">Products</a></h2>
+    </div>
+
+    <div class="p-3 mb-2 bg-light text-dark">
+        <h2 align="center"><a href="/internet_shop_war_exploded/admin/create-product" style="color: black">Create product</a></h2>
+    </div>
+
+    <div class="p-3 mb-2 bg-light text-dark">
+        <h2 align="center"><a href="/internet_shop_war_exploded/admin/users"style="color: black">All users</a></h2>
     </div>
 </body>
 </html>

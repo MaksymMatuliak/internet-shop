@@ -28,7 +28,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         String url = req.getServletPath();
-        if (url.equals("/login") || url.equals("/registration")
+        if (url.equals("/login") || url.equals("/registration") || url.equals("/products")
                 || url.equals("/") || url.equals("/logout") || url.equals("/admin/inject")) {
             filterChain.doFilter(req, resp);
             return;

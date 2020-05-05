@@ -7,7 +7,15 @@
 </head>
 <body>
     <div class="p-3 mb-2 bg-secondary text-white">
-        <h1 align="center" style="color: black"><b>Menu for users</b></h1>
+        <h1 align="center" style="color: black"><b>Menu for guests</b></h1>
+    </div>
+
+    <div class="p-3 mb-2 bg-light text-dark">
+        <h2 align="center"><a href="/internet_shop_war_exploded/login" style="color: black">Login</a></h2>
+    </div>
+
+    <div class="p-3 mb-2 bg-light text-dark">
+        <h2 align="center"><a href="/internet_shop_war_exploded/registration" style="color: black">Register</a></h2>
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
@@ -15,15 +23,7 @@
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/shoppingCart" style="color: black">Shopping Cart</a></h2>
-    </div>
-
-    <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/orders" style="color: black">Orders</a></h2>
-    </div>
-
-    <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/logout" style="color: black">Logout</a></h2>
+        <h2 align="center"><a href="/internet_shop_war_exploded/admin/inject" style="color: black">Inject</a></h2>
     </div>
 </body>
 </html>
