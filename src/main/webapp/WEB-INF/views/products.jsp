@@ -13,32 +13,31 @@
             <th scope="col">ID</th>
             <th scope="col">NAME</th>
             <th scope="col">PRICE</th>
-            <th scope="col">DELETE</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <c:forEach var="product" items="${products}">
-        <tbody>
-            <tr>
-                <td>
-                    <c:out value="${product.id}"/>
-                </td>
-                <td>
-                    <c:out value="${product.name}"/>
-                </td>
-                <td>
-                    <c:out value="${product.price}"/>
-                </td>
-                <td>
-                    <a href="/internet_shop_war_exploded/shopping-cart/product/delete?productId=${product.id}">DELETE</a>
-                </td>
-            </tr>
-        </tbody>
+    <tbody>
+        <tr>
+            <th><c:out value="${product.id}"/></th>
+
+            <td>
+                <c:out value="${product.name}"/>
+            </td>
+            <td>
+                <c:out value="${product.price}"/>
+            </td>
+            <td>
+                <a href="/internet_shop_war_exploded/shopping-cart/product/add?productId=${product.id}">ADD</a>
+            </td>
+        </tr>
+    </tbody>
     </c:forEach>
 </table>
 <h1></h1>
 <div class="p-3 mb-2 bg-light text-dark">
     <h3><a href="/internet_shop_war_exploded/" style="color: black">Home</a>
-    <a href="/internet_shop_war_exploded/shopping-cart/order/complete?shoppingCartId=${shoppingCartId}" style="color: black">Complete</a></h3>
+    <a href="/internet_shop_war_exploded/shoppingCart" style="color: black">Shopping cart</a></h3>
 </div>
 </body>
 </html>

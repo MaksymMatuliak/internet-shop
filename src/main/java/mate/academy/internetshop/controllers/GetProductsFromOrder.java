@@ -21,6 +21,6 @@ public class GetProductsFromOrder extends HttpServlet {
         String orderId = req.getParameter("orderId");
         List<Product> allProducts = orderService.get(Long.valueOf(orderId)).getProducts();
         req.setAttribute("products", allProducts);
-        req.getRequestDispatcher("/WEB-INF/views/products/order/all.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/order-products.jsp").forward(req, resp);
     }
 }

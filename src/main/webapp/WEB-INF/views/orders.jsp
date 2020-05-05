@@ -2,25 +2,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>All products</title>
+    <title>All orders</title>
 </head>
 <body>
 <table border="1">
-    <tr>
-        <th>ID</th>
-        <th>NAME</th>
-        <th>PRICE</th>
-    </tr>
-    <c:forEach var="product" items="${products}">
+    <c:forEach var="order" items="${orders}">
         <tr>
             <td>
-                <c:out value="${product.id}"/>
+                Заказ номер: <c:out value="${order.id}"/>
             </td>
             <td>
-                <c:out value="${product.name}"/>
+                <a href="/internet_shop_war_exploded/order/details?orderId=${order.id}">DETAILS</a>
             </td>
             <td>
-                <c:out value="${product.price}"/>
+                <a href="/internet_shop_war_exploded/order/delete?orderId=${order.id}">DELETE</a>
             </td>
         </tr>
     </c:forEach>
