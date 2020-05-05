@@ -2,12 +2,14 @@ package mate.academy.internetshop.controllers;
 
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.model.Product;
+import mate.academy.internetshop.model.Role;
 import mate.academy.internetshop.model.ShoppingCart;
 import mate.academy.internetshop.model.User;
 import mate.academy.internetshop.service.ShoppingCartService;
@@ -33,8 +35,10 @@ public class RegisterUserController extends HttpServlet {
         String password = req.getParameter("password");
         String passwordRepeat = req.getParameter("password-repeat");
         if (password.equals(passwordRepeat)) {
-            shoppingCartService.create(new ShoppingCart(userService.create(
-                    new User(name, login, password)), new LinkedList<Product>()));
+            User user = new User(name, login, password);
+            user.setRoles(Set.of(Role.of("USER")));
+            shoppingCartService.create(
+                    new ShoppingCart(userService.create(user), new LinkedList<Product>()));
             resp.sendRedirect(req.getContextPath() + '/');
         } else {
             req.setAttribute("message", "Passwords are not the same!");
