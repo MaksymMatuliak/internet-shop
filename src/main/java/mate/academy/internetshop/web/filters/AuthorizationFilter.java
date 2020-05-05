@@ -4,7 +4,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import javax.servlet.*;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.internetshop.lib.Injector;
@@ -13,9 +18,9 @@ import mate.academy.internetshop.model.User;
 import mate.academy.internetshop.service.UserService;
 
 public class AuthorizationFilter implements Filter {
-    private Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
     private static final String USER_ID = "userId";
     private static final Injector INJECTOR = Injector.getInstance("mate.academy");
+    private Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
@@ -58,11 +63,10 @@ public class AuthorizationFilter implements Filter {
 
     @Override
     public void destroy() {
-
     }
 
     private boolean isAuthorized(User user, Set<Role.RoleName> authorizedRoles) {
-        for (Role.RoleName authorizedRole : authorizedRoles ) {
+        for (Role.RoleName authorizedRole : authorizedRoles) {
             for (Role userRole : user.getRoles()) {
                 if (authorizedRole.equals(userRole.getRoleName())) {
                     return true;
