@@ -60,7 +60,7 @@ public class AuthorizationFilter implements Filter {
             filterChain.doFilter(req, resp);
             return;
         } else {
-            LOGGER.warn("User:" + user);
+            LOGGER.warn("User who wanted to get access to admin resources" + user);
             req.getRequestDispatcher("/WEB-INF/views/access-denied.jsp").forward(req, resp);
             return;
         }

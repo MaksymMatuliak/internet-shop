@@ -1,6 +1,10 @@
 package mate.academy.internetshop.web.filters;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -10,16 +14,22 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.internetshop.lib.Injector;
+import mate.academy.internetshop.model.Role;
 import mate.academy.internetshop.service.UserService;
 
 public class AuthenticationFilter implements Filter {
     private static final String USER_ID = "userId";
     private static final Injector INJECTOR = Injector.getInstance("mate.academy");
+    private Set<String> guestsUrls= new HashSet<>();
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        guestsUrls.add("/login");
+        guestsUrls.add("/registration");
+        guestsUrls.add("/products");
+        guestsUrls.add("/");
+        guestsUrls.add("/admin/inject");
     }
 
     @Override
@@ -28,8 +38,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         String url = req.getServletPath();
-        if (url.equals("/login") || url.equals("/registration") || url.equals("/products")
-                || url.equals("/") || url.equals("/logout") || url.equals("/admin/inject")) {
+        if (guestsUrls.contains(url)) {
             filterChain.doFilter(req, resp);
             return;
         }
