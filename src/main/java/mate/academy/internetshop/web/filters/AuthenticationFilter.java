@@ -17,7 +17,7 @@ import mate.academy.internetshop.service.UserService;
 public class AuthenticationFilter implements Filter {
     private static final String USER_ID = "userId";
     private static final Injector INJECTOR = Injector.getInstance("mate.academy");
-    private Set<String> guestsUrls= new HashSet<>();
+    private Set<String> guestsUrls = new HashSet<>();
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
