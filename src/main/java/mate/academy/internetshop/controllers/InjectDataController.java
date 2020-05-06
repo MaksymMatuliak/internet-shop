@@ -43,6 +43,6 @@ public class InjectDataController extends HttpServlet {
         productService.create(new Product("Iphone", new BigDecimal("1099.99")));
         productService.create(new Product("T-Shirt", new BigDecimal("95.99")));
         productService.create(new Product("Glasses", new BigDecimal("149.99")));
-        req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/indexForGuests.jsp").forward(req, resp);
     }
 }
