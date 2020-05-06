@@ -1,9 +1,7 @@
 package mate.academy.internetshop.web.filters;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -14,7 +12,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.internetshop.lib.Injector;
-import mate.academy.internetshop.model.Role;
 import mate.academy.internetshop.service.UserService;
 
 public class AuthenticationFilter implements Filter {
