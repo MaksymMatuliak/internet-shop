@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import mate.academy.internetshop.dao.ProductDao;
+import mate.academy.internetshop.exceptions.DataProcessingException;
 import mate.academy.internetshop.lib.Dao;
 import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.util.ConnectionUtil;
@@ -32,7 +33,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 key = generatedKeys.getLong(1);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DataProcessingException("Can't create product in DataBase");
         }
         return get(key).get();
     }
@@ -54,7 +55,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 product.setPrice(productPrice);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DataProcessingException("Can't get product in DataBase");
         }
         return Optional.of(product);
     }
@@ -77,7 +78,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 products.add(product);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DataProcessingException("Can't get products in DataBase");
         }
         return products;
     }
@@ -93,7 +94,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.execute();
             ResultSet generatedKeys = statement.getGeneratedKeys();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DataProcessingException("Can't update product in DataBase");
         }
         return element;
     }
@@ -107,8 +108,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.execute();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DataProcessingException("Can't delete product in DataBase");
         }
-        return false;
     }
 }
