@@ -19,7 +19,7 @@ import mate.academy.internetshop.util.ConnectionUtil;
 public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product create(Product element) {
-        String query = "INSERT INTO products (nameProduct, price) VALUES (?, ?)";
+        String query = "INSERT INTO products (name, price) VALUES (?, ?)";
         Product product = element;
         Long key = 0L;
         try (Connection connection = ConnectionUtil.getConnection()) {
@@ -48,7 +48,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Long productId = resultSet.getLong("id");
-                String productName = resultSet.getString("nameProduct");
+                String productName = resultSet.getString("name");
                 BigDecimal productPrice = resultSet.getBigDecimal("price");
                 product.setId(productId);
                 product.setName(productName);
@@ -70,7 +70,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             while (resultSet.next()) {
                 Product product = new Product();
                 Long productId = resultSet.getLong("id");
-                String productName = resultSet.getString("nameProduct");
+                String productName = resultSet.getString("name");
                 BigDecimal productPrice = resultSet.getBigDecimal("price");
                 product.setId(productId);
                 product.setName(productName);
