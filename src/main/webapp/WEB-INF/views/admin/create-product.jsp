@@ -1,15 +1,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <title>Create product</title>
 </head>
 <body>
-<h1>Create product: </h1>
+<div class="container-fluid">
 <form method="post" action="${pageContext.request.contextPath}/admin/create-product">
-    Name: <input type="text" name="name">
-    Price: <input type="text" name="price">
-    <button type="submit">Done</button>
+    <div class="form-group">
+        <h2><label for="exampleInputText1">Name</label></h2>
+        <input type="text" name="name"class="form-control" id="exampleInputText1" placeholder="Enter login">
+    </div>
+    <div class="form-group">
+        <h2><label for="exampleInputText2">Login</label></h2>
+        <input type="text" name="price"class="form-control" id="exampleInputText2" placeholder="Enter login">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a class="btn btn-primary" href="/internet_shop_war_exploded/" role="button">Home</a>
 </form>
-<button><a href="/internet_shop_war_exploded/">Home</a></button>
+</div>
 </body>
 </html>
