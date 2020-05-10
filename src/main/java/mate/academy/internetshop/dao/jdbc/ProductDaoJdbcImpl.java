@@ -91,7 +91,6 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setBigDecimal(2, element.getPrice());
             statement.setLong(3, element.getId());
             statement.execute();
-            ResultSet generatedKeys = statement.getGeneratedKeys();
         } catch (SQLException e) {
             throw new DataProcessingException("Can't update product in DataBase");
         }
