@@ -17,6 +17,17 @@ import mate.academy.internetshop.util.ConnectionUtil;
 
 @Dao
 public class ProductDaoJdbcImpl implements ProductDao {
+    private Product getProductFromResultSet(ResultSet resultSet) throws SQLException {
+        Product product = new Product();
+        Long productId = resultSet.getLong("id");
+        String productName = resultSet.getString("name");
+        BigDecimal productPrice = resultSet.getBigDecimal("price");
+        product.setId(productId);
+        product.setName(productName);
+        product.setPrice(productPrice);
+        return product;
+    }
+
     @Override
     public Product create(Product element) {
         String query = "INSERT INTO products (name, price) VALUES (?, ?)";
@@ -47,12 +58,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Long productId = resultSet.getLong("id");
-                String productName = resultSet.getString("name");
-                BigDecimal productPrice = resultSet.getBigDecimal("price");
-                product.setId(productId);
-                product.setName(productName);
-                product.setPrice(productPrice);
+                product = getProductFromResultSet(resultSet);
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get product in DataBase");
@@ -68,14 +74,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Product product = new Product();
-                Long productId = resultSet.getLong("id");
-                String productName = resultSet.getString("name");
-                BigDecimal productPrice = resultSet.getBigDecimal("price");
-                product.setId(productId);
-                product.setName(productName);
-                product.setPrice(productPrice);
-                products.add(product);
+                products.add(getProductFromResultSet(resultSet));
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get products in DataBase");
