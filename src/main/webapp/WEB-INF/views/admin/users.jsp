@@ -38,7 +38,7 @@
     <h1></h1>
     <div class="p-3 mb-2 bg-light text-dark">
         <h3>
-            <a href="/internet_shop_war_exploded/" style="color: black">Home</a>
+            <a href="${pageContext.request.contextPath}" style="color: black">Home</a>
         </h3>
     </div>
 </body>

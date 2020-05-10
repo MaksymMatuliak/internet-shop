@@ -26,7 +26,7 @@
     </div>
     <h6 style="color: red">${message}</h6>
     <button type="submit" class="btn btn-primary">Submit</button>
-    <a class="btn btn-primary" href="/internet_shop_war_exploded/login" role="button">Login</a>
+    <a class="btn btn-primary" href="${pageContext.request.contextPath}/login" role="button">Login</a>
 </form>
 </div>
 </body>

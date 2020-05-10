@@ -18,7 +18,7 @@
         </div>
         <h6 style="color: red">${errorMessage}</h6>
         <button type="submit" class="btn btn-primary">Submit</button>
-        <a class="btn btn-primary" href="/internet_shop_war_exploded/registration" role="button">Register</a>
+        <a class="btn btn-primary" href="${pageContext.request.contextPath}/registration" role="button">Register</a>
     </form>
     </div>
 </body>

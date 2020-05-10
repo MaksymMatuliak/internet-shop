@@ -11,27 +11,27 @@
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/login" style="color: black">Login</a></h2>
+        <h2 align="center"><a href="${pageContext.request.contextPath}/login" style="color: black">Login</a></h2>
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/registration" style="color: black">Register</a></h2>
+        <h2 align="center"><a href="${pageContext.request.contextPath}/registration" style="color: black">Register</a></h2>
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/products" style="color: black">All products</a></h2>
+        <h2 align="center"><a href="${pageContext.request.contextPath}/products" style="color: black">All products</a></h2>
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/shoppingCart" style="color: black">Shopping Cart</a></h2>
+        <h2 align="center"><a href="${pageContext.request.contextPath}/shoppingCart" style="color: black">Shopping Cart</a></h2>
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/orders" style="color: black">Orders</a></h2>
+        <h2 align="center"><a href="${pageContext.request.contextPath}/orders" style="color: black">Orders</a></h2>
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/logout" style="color: black">Logout</a></h2>
+        <h2 align="center"><a href="${pageContext.request.contextPath}/logout" style="color: black">Logout</a></h2>
     </div>
 
     <div class="p-3 mb-2 bg-secondary text-white">
@@ -39,19 +39,19 @@
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/admin/inject" style="color: black">Inject</a></h2>
+        <h2 align="center"><a href="${pageContext.request.contextPath}/admin/inject" style="color: black">Inject</a></h2>
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/admin/products" style="color: black">Products</a></h2>
+        <h2 align="center"><a href="${pageContext.request.contextPath}/admin/products" style="color: black">Products</a></h2>
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/admin/create-product" style="color: black">Create product</a></h2>
+        <h2 align="center"><a href="${pageContext.request.contextPath}/admin/create-product" style="color: black">Create product</a></h2>
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/admin/users"style="color: black">All users</a></h2>
+        <h2 align="center"><a href="${pageContext.request.contextPath}/admin/users"style="color: black">All users</a></h2>
     </div>
 </body>
 </html>

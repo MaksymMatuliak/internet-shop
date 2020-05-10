@@ -11,19 +11,19 @@
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/products" style="color: black">All products</a></h2>
+        <h2 align="center"><a href="${pageContext.request.contextPath}/products" style="color: black">All products</a></h2>
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/shoppingCart" style="color: black">Shopping Cart</a></h2>
+        <h2 align="center"><a href="${pageContext.request.contextPath}/shoppingCart" style="color: black">Shopping Cart</a></h2>
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/orders" style="color: black">Orders</a></h2>
+        <h2 align="center"><a href="${pageContext.request.contextPath}/orders" style="color: black">Orders</a></h2>
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="/internet_shop_war_exploded/logout" style="color: black">Logout</a></h2>
+        <h2 align="center"><a href="${pageContext.request.contextPath}/logout" style="color: black">Logout</a></h2>
     </div>
 </body>
 </html>

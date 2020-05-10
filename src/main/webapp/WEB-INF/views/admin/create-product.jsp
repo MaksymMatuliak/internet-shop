@@ -17,7 +17,7 @@
         <input type="text" name="price"class="form-control" id="exampleInputText2" placeholder="Enter login">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-    <a class="btn btn-primary" href="/internet_shop_war_exploded/" role="button">Home</a>
+    <a class="btn btn-primary" href="${pageContext.request.contextPath}" role="button">Home</a>
 </form>
 </div>
 </body>
