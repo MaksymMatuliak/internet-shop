@@ -32,7 +32,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public Product create(Product element) {
         String query = "INSERT INTO products (name, price) VALUES (?, ?)";
         Product product = element;
-        Long key = 0L;
+        Long key;
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement =
                     connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -40,9 +40,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setBigDecimal(2, product.getPrice());
             statement.execute();
             ResultSet generatedKeys = statement.getGeneratedKeys();
-            if (generatedKeys != null && generatedKeys.next()) {
-                key = generatedKeys.getLong(1);
-            }
+            generatedKeys.next();
+            key = generatedKeys.getLong(1);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't create product in DataBase");
         }
@@ -52,14 +51,13 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Optional<Product> get(Long id) {
         String query = "SELECT * FROM products WHERE id = ?";
-        Product product = new Product();
+        Product product;
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                product = getProductFromResultSet(resultSet);
-            }
+            resultSet.next();
+            product = getProductFromResultSet(resultSet);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get product in DataBase");
         }
