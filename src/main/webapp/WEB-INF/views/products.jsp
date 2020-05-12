@@ -28,7 +28,7 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="/internet_shop_war_exploded/shopping-cart/product/add?productId=${product.id}">ADD</a>
+                <a href="${pageContext.request.contextPath}/shopping-cart/product/add?productId=${product.id}">ADD</a>
             </td>
         </tr>
     </tbody>
@@ -36,8 +36,8 @@
 </table>
 <h1></h1>
 <div class="p-3 mb-2 bg-light text-dark">
-    <h3><a href="/internet_shop_war_exploded/" style="color: black">Home</a>
-    <a href="/internet_shop_war_exploded/shoppingCart" style="color: black">Shopping cart</a></h3>
+    <h3><a href="${pageContext.request.contextPath}" style="color: black">Home</a>
+    <a href="${pageContext.request.contextPath}/shoppingCart" style="color: black">Shopping cart</a></h3>
 </div>
 </body>
 </html>

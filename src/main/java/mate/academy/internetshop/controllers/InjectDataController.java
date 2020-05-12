@@ -29,15 +29,18 @@ public class InjectDataController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         User admin = new User("Maksym", "admin", "");
+        admin.setId(1000L);
         admin.setRoles(Set.of(Role.of("ADMIN"), Role.of("USER")));
         shoppingCartService.create(
-                new ShoppingCart(userService.create(admin), new LinkedList<Product>()));
+                new ShoppingCart(userService.create(admin).getId(), new LinkedList<Product>()));
         User userIvan = new User("Ivan", "Iv", "1234");
+        userIvan.setId(1001L);
         shoppingCartService.create(
-                new ShoppingCart(userService.create(userIvan), new LinkedList<Product>()));
+                new ShoppingCart(userService.create(userIvan).getId(), new LinkedList<Product>()));
         User userLeo = new User("Leo", "L2000", "11223344");
+        userLeo.setId(1002L);
         shoppingCartService.create(
-                new ShoppingCart(userService.create(userLeo), new LinkedList<Product>()));
+                new ShoppingCart(userService.create(userLeo).getId(), new LinkedList<Product>()));
         productService.create(new Product("Pants", new BigDecimal("99.99")));
         productService.create(new Product("Ball", new BigDecimal("25.99")));
         productService.create(new Product("Iphone", new BigDecimal("1099.99")));

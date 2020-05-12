@@ -38,7 +38,7 @@ public class RegisterUserController extends HttpServlet {
             User user = new User(name, login, password);
             user.setRoles(Set.of(Role.of("USER")));
             shoppingCartService.create(
-                    new ShoppingCart(userService.create(user), new LinkedList<Product>()));
+                    new ShoppingCart(userService.create(user).getId(), new LinkedList<Product>()));
             resp.sendRedirect(req.getContextPath() + "/login");
         } else {
             req.setAttribute("message", "Passwords are not the same!");
