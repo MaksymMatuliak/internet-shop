@@ -39,10 +39,6 @@
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="${pageContext.request.contextPath}/admin/inject" style="color: black">Inject</a></h2>
-    </div>
-
-    <div class="p-3 mb-2 bg-light text-dark">
         <h2 align="center"><a href="${pageContext.request.contextPath}/admin/products" style="color: black">Products</a></h2>
     </div>
 
