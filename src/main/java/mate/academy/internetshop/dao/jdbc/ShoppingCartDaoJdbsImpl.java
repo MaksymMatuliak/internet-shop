@@ -118,11 +118,9 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
     }
 
     private ShoppingCart getProductsForShoppingCart(ShoppingCart shoppingCart) throws SQLException {
-        String query = "SELECT * FROM shopping_carts "
-                + "LEFT JOIN shopping_carts_products "
-                + "ON shopping_carts.shopping_cart_id = shopping_carts_products.shopping_cart_id "
-                + "LEFT JOIN products on products.product_id = shopping_carts_products.product_id "
-                + "WHERE shopping_carts.shopping_cart_id = ?";
+        String query = "SELECT * FROM shopping_carts_products "
+                + "LEFT JOIN products ON products.product_id = shopping_carts_products.product_id "
+                + "WHERE shopping_carts_products.shopping_cart_id = ?";
         List<Product> productList = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);

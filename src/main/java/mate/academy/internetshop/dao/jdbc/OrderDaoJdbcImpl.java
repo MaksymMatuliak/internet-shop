@@ -27,7 +27,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             PreparedStatement statement =
                     connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setLong(1, element.getUserId());
-            statement.execute();
+            statement.executeUpdate();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             generatedKeys.next();
             key = generatedKeys.getLong(1);
@@ -35,7 +35,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 statement = connection.prepareStatement(query2);
                 statement.setLong(1, product.getId());
                 statement.setLong(2, key);
-                statement.execute();
+                statement.executeUpdate();
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can't create order in DataBase");
@@ -46,8 +46,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public Optional<Order> get(Long id) {
         String query = "SELECT * FROM orders "
-                + "LEFT JOIN orders_products ON orders.order_id = orders_products.order_id "
-                + "LEFT JOIN products ON orders_products.product_id = products.product_id "
+                + "INNER JOIN orders_products ON orders.order_id = orders_products.order_id "
+                + "INNER JOIN products ON orders_products.product_id = products.product_id "
                 + "WHERE orders.order_id = ?";
         Order order;
         try (Connection connection = ConnectionUtil.getConnection()) {
@@ -56,7 +56,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             order = getOrderFromResultSet(resultSet);
-            order = getProductsFromOrder(order);
+            order = getOrderWithProduct(order);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get order from DataBase");
         }
@@ -72,7 +72,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Order order = getOrderFromResultSet(resultSet);
-                orders.add(getProductsFromOrder(order));
+                orders.add(getOrderWithProduct(order));
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get orders in DataBase");
@@ -121,11 +121,10 @@ public class OrderDaoJdbcImpl implements OrderDao {
         return order;
     }
 
-    private Order getProductsFromOrder(Order order) throws SQLException {
-        String query = "SELECT * FROM orders "
-                + "LEFT JOIN orders_products ON orders.order_id = orders_products.order_id "
-                + "LEFT JOIN products on products.product_id = orders_products.product_id "
-                + "WHERE orders.order_id = ?";
+    private Order getOrderWithProduct(Order order) throws SQLException {
+        String query = "SELECT * FROM orders_products "
+                + "INNER JOIN products on products.product_id = orders_products.product_id "
+                + "WHERE orders_products.order_id = ?";
         List<Product> productList = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
