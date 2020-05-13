@@ -132,7 +132,8 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
                 Product product = new Product();
                 product.setId(resultSet.getLong("product_id"));
                 product.setName(resultSet.getString("name"));
-                product.setPrice(BigDecimal.valueOf(resultSet.getFloat("price")));
+                product.setPrice(BigDecimal.valueOf(
+                        Math.round(resultSet.getFloat("price") * 100.0) / 100.0));
                 if (product.getName() != null) {
                     productList.add(product);
                 }
