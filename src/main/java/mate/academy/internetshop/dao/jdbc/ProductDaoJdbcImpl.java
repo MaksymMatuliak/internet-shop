@@ -38,7 +38,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Optional<Product> get(Long id) {
-        String query = "SELECT * FROM products WHERE id = ?";
+        String query = "SELECT * FROM products WHERE product_id = ?";
         Product product;
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -47,7 +47,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             resultSet.next();
             product = getProductFromResultSet(resultSet);
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get product in DataBase");
+            throw new DataProcessingException("Can't get product from DataBase");
         }
         return Optional.of(product);
     }
@@ -70,7 +70,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Product update(Product element) {
-        String query = "UPDATE products SET nameProduct = ?, price = ? WHERE id = ?";
+        String query = "UPDATE products SET name = ?, price = ? WHERE id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, element.getName());
@@ -85,7 +85,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public boolean delete(Long id) {
-        String query = "DELETE FROM products WHERE id = ?";
+        String query = "DELETE FROM products WHERE product_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
@@ -98,7 +98,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     private Product getProductFromResultSet(ResultSet resultSet) throws SQLException {
         Product product = new Product();
-        Long productId = resultSet.getLong("id");
+        Long productId = resultSet.getLong("product_id");
         String productName = resultSet.getString("name");
         BigDecimal productPrice = resultSet.getBigDecimal("price");
         product.setId(productId);

@@ -10,11 +10,11 @@
 <form method="post" action="${pageContext.request.contextPath}/admin/create-product">
     <div class="form-group">
         <h2><label for="exampleInputText1">Name</label></h2>
-        <input type="text" name="name"class="form-control" id="exampleInputText1" placeholder="Enter login">
+        <input type="text" name="name"class="form-control" id="exampleInputText1" placeholder="Enter name">
     </div>
     <div class="form-group">
-        <h2><label for="exampleInputText2">Login</label></h2>
-        <input type="text" name="price"class="form-control" id="exampleInputText2" placeholder="Enter login">
+        <h2><label for="exampleInputText2">Price</label></h2>
+        <input type="text" name="price"class="form-control" id="exampleInputText2" placeholder="Enter price">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
     <a class="btn btn-primary" href="${pageContext.request.contextPath}" role="button">Home</a>
