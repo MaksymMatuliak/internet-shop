@@ -98,7 +98,14 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
 
     @Override
     public boolean delete(Long id) {
-        return false;
+        String query = "DELETE FROM shopping_carts WHERE shopping_cart_id = ?";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, id);
+            return statement.execute();
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't delete shopping cart in DataBase");
+        }
     }
 
     private ShoppingCart getShoppingCartFromResultSet(ResultSet resultSet) throws SQLException {
@@ -132,7 +139,7 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
             }
             shoppingCart.setProducts(productList);
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get user from DataBase");
+            throw new DataProcessingException("Can't get shopping cart from DataBase");
         }
         return shoppingCart;
     }

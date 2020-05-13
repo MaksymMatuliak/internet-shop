@@ -118,8 +118,7 @@ public class UserDaoJdbcImpl implements UserDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
-            statement.execute();
-            return true;
+            return statement.execute();
         } catch (SQLException e) {
             throw new DataProcessingException("Can't delete user in DataBase");
         }
