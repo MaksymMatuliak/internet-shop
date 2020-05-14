@@ -65,7 +65,6 @@ public class UserDaoJdbcImpl implements UserDao {
     public Optional<User> get(Long id) {
         String query = "SELECT * FROM users INNER JOIN user_roles "
                 + "ON users.user_id = user_roles.user_id "
-                + "INNER JOIN roles on user_roles.role_id = roles.role_id "
                 + "WHERE users.user_id = ?";
         User user;
         try (Connection connection = ConnectionUtil.getConnection()) {
