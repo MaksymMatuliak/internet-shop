@@ -40,8 +40,6 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
         String query = "SELECT * FROM shopping_carts "
                 + "LEFT JOIN shopping_carts_products "
                 + "ON shopping_carts.shopping_cart_id = shopping_carts_products.shopping_cart_id "
-                + "LEFT JOIN products "
-                + "ON shopping_carts_products.product_id = products.product_id "
                 + "WHERE shopping_carts.shopping_cart_id = ?";
         ShoppingCart shoppingCart;
         try (Connection connection = ConnectionUtil.getConnection()) {
