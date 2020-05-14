@@ -37,10 +37,10 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
 
     @Override
     public Optional<ShoppingCart> get(Long id) {
-        String query = "SELECT * FROM shopping_carts "
-                + "LEFT JOIN shopping_carts_products "
-                + "ON shopping_carts.shopping_cart_id = shopping_carts_products.shopping_cart_id "
-                + "WHERE shopping_carts.shopping_cart_id = ?";
+        String query = "SELECT * FROM shopping_carts sc "
+                + "LEFT JOIN shopping_carts_products scp "
+                + "ON sc.shopping_cart_id = scp.shopping_cart_id "
+                + "WHERE sc.shopping_cart_id = ?";
         ShoppingCart shoppingCart;
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -115,9 +115,9 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
     }
 
     private ShoppingCart getProductsForShoppingCart(ShoppingCart shoppingCart) throws SQLException {
-        String query = "SELECT * FROM shopping_carts_products "
-                + "LEFT JOIN products ON products.product_id = shopping_carts_products.product_id "
-                + "WHERE shopping_carts_products.shopping_cart_id = ?";
+        String query = "SELECT * FROM shopping_carts_products scp "
+                + "LEFT JOIN products p ON p.product_id = scp.product_id "
+                + "WHERE scp.shopping_cart_id = ?";
         List<Product> productList = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
