@@ -39,6 +39,11 @@ public class RegisterUserController extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
             return;
         }
+        if (name.length() == 0 || login.length() == 0 || password.length() == 0) {
+            req.setAttribute("message", "Fields cannot be emptyg!");
+            req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
+            return;
+        }
         if (password.equals(passwordRepeat)) {
             User user = new User(name, login, password);
             user.setRoles(Set.of(Role.of("USER")));

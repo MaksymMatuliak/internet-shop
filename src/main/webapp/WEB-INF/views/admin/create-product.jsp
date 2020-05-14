@@ -16,6 +16,7 @@
         <h2><label for="exampleInputText2">Price</label></h2>
         <input type="text" name="price"class="form-control" id="exampleInputText2" placeholder="Enter price">
     </div>
+    <h6 style="color: red">${message}</h6>
     <button type="submit" class="btn btn-primary">Submit</button>
     <a class="btn btn-primary" href="${pageContext.request.contextPath}" role="button">Home</a>
 </form>
