@@ -34,13 +34,13 @@ public class RegisterUserController extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         String passwordRepeat = req.getParameter("password-repeat");
-        if (!userService.findByLogin(login).isEmpty()) {
-            req.setAttribute("message", "User with such login already exists!");
+        if (name.length() == 0 || login.length() == 0 || password.length() == 0) {
+            req.setAttribute("message", "Fields cannot be empty!");
             req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
             return;
         }
-        if (name.length() == 0 || login.length() == 0 || password.length() == 0) {
-            req.setAttribute("message", "Fields cannot be emptyg!");
+        if (!userService.findByLogin(login).isEmpty()) {
+            req.setAttribute("message", "User with such login already exists!");
             req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
             return;
         }
