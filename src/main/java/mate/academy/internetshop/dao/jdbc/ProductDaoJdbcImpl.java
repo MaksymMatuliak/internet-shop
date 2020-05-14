@@ -20,7 +20,6 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product create(Product element) {
         String query = "INSERT INTO products (name, price) VALUES (?, ?)";
-        Long key;
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement =
                     connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -29,16 +28,16 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.execute();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             generatedKeys.next();
-            key = generatedKeys.getLong(1);
+            element.setId(generatedKeys.getLong(1));
         } catch (SQLException e) {
             throw new DataProcessingException("Can't create product in DataBase");
         }
-        return get(key).get();
+        return element;
     }
 
     @Override
     public Optional<Product> get(Long id) {
-        String query = "SELECT * FROM products WHERE id = ?";
+        String query = "SELECT * FROM products WHERE product_id = ?";
         Product product;
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -47,7 +46,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             resultSet.next();
             product = getProductFromResultSet(resultSet);
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get product in DataBase");
+            throw new DataProcessingException("Can't get product from DataBase");
         }
         return Optional.of(product);
     }
@@ -70,13 +69,13 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Product update(Product element) {
-        String query = "UPDATE products SET nameProduct = ?, price = ? WHERE id = ?";
+        String query = "UPDATE products SET name = ?, price = ? WHERE product_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, element.getName());
             statement.setBigDecimal(2, element.getPrice());
             statement.setLong(3, element.getId());
-            statement.execute();
+            statement.executeUpdate();
         } catch (SQLException e) {
             throw new DataProcessingException("Can't update product in DataBase");
         }
@@ -85,12 +84,11 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public boolean delete(Long id) {
-        String query = "DELETE FROM products WHERE id = ?";
+        String query = "DELETE FROM products WHERE product_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
-            statement.execute();
-            return true;
+            return statement.execute();
         } catch (SQLException e) {
             throw new DataProcessingException("Can't delete product in DataBase");
         }
@@ -98,7 +96,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     private Product getProductFromResultSet(ResultSet resultSet) throws SQLException {
         Product product = new Product();
-        Long productId = resultSet.getLong("id");
+        Long productId = resultSet.getLong("product_id");
         String productName = resultSet.getString("name");
         BigDecimal productPrice = resultSet.getBigDecimal("price");
         product.setId(productId);

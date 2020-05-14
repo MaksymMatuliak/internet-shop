@@ -26,7 +26,13 @@ public class AddProductController extends HttpServlet {
             throws ServletException, IOException {
         String name = req.getParameter("name");
         String price = req.getParameter("price");
-        productService.create(new Product(name, new BigDecimal(price)));
+        if (name.length() > 0 && price.length() > 0 && price.matches("-?\\d+(\\.\\d+)?")) {
+            productService.create(new Product(name, new BigDecimal(price)));
+        } else {
+            req.setAttribute("message", "Data is not valid!");
+            req.getRequestDispatcher("/WEB-INF/views/admin/create-product.jsp").forward(req, resp);
+            return;
+        }
         resp.sendRedirect(req.getContextPath() + "/admin/create-product");
     }
 }

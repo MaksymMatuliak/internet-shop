@@ -21,9 +21,5 @@
     <div class="p-3 mb-2 bg-light text-dark">
         <h2 align="center"><a href="${pageContext.request.contextPath}/products" style="color: black">All products</a></h2>
     </div>
-
-    <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="${pageContext.request.contextPath}/admin/inject" style="color: black">Inject</a></h2>
-    </div>
 </body>
 </html>
