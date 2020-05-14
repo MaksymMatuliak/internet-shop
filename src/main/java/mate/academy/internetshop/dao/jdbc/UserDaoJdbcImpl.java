@@ -51,13 +51,14 @@ public class UserDaoJdbcImpl implements UserDao {
             ResultSet generatedKeys = statement.getGeneratedKeys();
             generatedKeys.next();
             key = generatedKeys.getLong(1);
+            element.setId(key);
             PreparedStatement statement2 = connection.prepareStatement(query2);
             statement2.setLong(1, key);
             statement2.execute();
         } catch (SQLException e) {
             throw new DataProcessingException("Can't create user in DataBase");
         }
-        return get(key).get();
+        return element;
     }
 
     @Override
@@ -105,7 +106,7 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.setString(2, element.getLogin());
             statement.setString(3, element.getPassword());
             statement.setLong(4, element.getId());
-            statement.execute();
+            statement.executeUpdate();
             return element;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't update user in DataBase");
@@ -138,10 +139,9 @@ public class UserDaoJdbcImpl implements UserDao {
     }
 
     private User getRolesForUser(User user) throws SQLException {
-        String query = "SELECT * FROM users INNER JOIN user_roles "
-                + "ON users.user_id = user_roles.user_id "
+        String query = "SELECT * FROM user_roles "
                 + "INNER JOIN roles on user_roles.role_id = roles.role_id "
-                + "WHERE users.user_id = ?";
+                + "WHERE user_roles.user_id = ?";
         Set<Role> roleSet = new HashSet<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);

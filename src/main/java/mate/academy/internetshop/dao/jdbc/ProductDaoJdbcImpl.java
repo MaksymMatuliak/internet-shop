@@ -20,7 +20,6 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product create(Product element) {
         String query = "INSERT INTO products (name, price) VALUES (?, ?)";
-        Long key;
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement =
                     connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -29,11 +28,11 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.execute();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             generatedKeys.next();
-            key = generatedKeys.getLong(1);
+            element.setId(generatedKeys.getLong(1));
         } catch (SQLException e) {
             throw new DataProcessingException("Can't create product in DataBase");
         }
-        return get(key).get();
+        return element;
     }
 
     @Override
@@ -70,13 +69,13 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Product update(Product element) {
-        String query = "UPDATE products SET name = ?, price = ? WHERE id = ?";
+        String query = "UPDATE products SET name = ?, price = ? WHERE product_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, element.getName());
             statement.setBigDecimal(2, element.getPrice());
             statement.setLong(3, element.getId());
-            statement.execute();
+            statement.executeUpdate();
         } catch (SQLException e) {
             throw new DataProcessingException("Can't update product in DataBase");
         }

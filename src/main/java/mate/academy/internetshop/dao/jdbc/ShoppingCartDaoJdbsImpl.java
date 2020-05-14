@@ -21,7 +21,6 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
     @Override
     public ShoppingCart create(ShoppingCart element) {
         String query = "INSERT INTO shopping_carts (user_id) VALUES (?)";
-        Long key;
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement =
                     connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -29,11 +28,11 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
             statement.execute();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             generatedKeys.next();
-            key = generatedKeys.getLong(1);
+            element.setId(generatedKeys.getLong(1));
         } catch (SQLException e) {
             throw new DataProcessingException("Can't create shopping cart in DataBase");
         }
-        return get(key).get();
+        return element;
     }
 
     @Override
@@ -83,12 +82,12 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, element.getId());
-            statement.execute();
+            statement.executeUpdate();
             PreparedStatement statement2 = connection.prepareStatement(query2);
             for (Product product : element.getProducts()) {
                 statement2.setLong(1, element.getId());
                 statement2.setLong(2, product.getId());
-                statement2.execute();
+                statement2.executeUpdate();
             }
             return element;
         } catch (SQLException e) {
