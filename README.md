@@ -1,6 +1,6 @@
 # Internet Shop
 
-![Header Image](/internet-shop/blob/clean/src/main/resources/banner-1.png)
+![Header Image](/src/main/resources/banner-1.png)
 
 # Table of Contents
 
@@ -57,7 +57,7 @@ Configure Tomcat:
 - Add artifact
 - Add Java SDK 11
 
-Change a path to your Log file in **src/main/resources/log4j2.xml** on line 4.
+Change a path to your Log file in **src/main/resources/log4j.properties** on line 12.
 
 <hr>
 
