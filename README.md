@@ -45,7 +45,7 @@ To run this project you need to install:
 
 - <a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html">Java 11</a>
 - <a href="https://tomcat.apache.org/download-90.cgi">Tomcat</a>
-- <a href="https://www.mysql.com/downloads/">MySQL 8</a> (optional)
+- <a href="https://www.mysql.com/downloads/">MySQL 8</a>
 
 <hr>
 
