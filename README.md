@@ -1,6 +1,6 @@
 # Internet Shop
 
-![Header Image](src\main\resources\banner-1.png)
+![Header Image](/internet-shop/blob/clean/src/main/resources/banner-1.png)
 
 # Table of Contents
 
