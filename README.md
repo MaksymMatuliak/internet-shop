@@ -28,7 +28,7 @@ This shop has basic functions for online store such as:
 
 This project has authentication and authorization filters, DAO and Service layers, Servlets and JSP pages.
 
-DAO layer has two implementations: inner storage based on List and outer storage based on MySQL DB.
+DAO layer based on MySQL DB.
 
 ## <a name='structure'></a>Project structure
 
