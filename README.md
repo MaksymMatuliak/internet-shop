@@ -72,5 +72,5 @@ Run the project:
 Main page is at URL: .../{context_path}/index
 
 ## <a name='author'></a>Author
-[Andrii Voloshyn](https://github.com/MaksymMatuliak)
+[Maksym Matuliak](https://github.com/MaksymMatuliak)
 
