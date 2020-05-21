@@ -29,7 +29,7 @@ public class UserDaoJdbcImpl implements UserDao {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             user = getUserFromResultSet(resultSet);
-            user = getRolesForUser(user);
+            getRolesForUser(user);
         } catch (SQLException e) {
             return Optional.empty();
         }
@@ -74,7 +74,7 @@ public class UserDaoJdbcImpl implements UserDao {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             user = getUserFromResultSet(resultSet);
-            user = getRolesForUser(user);
+            getRolesForUser(user);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get user from DataBase");
         }
@@ -140,7 +140,7 @@ public class UserDaoJdbcImpl implements UserDao {
         return user;
     }
 
-    private User getRolesForUser(User user) throws SQLException {
+    private User getRolesForUser(User user) {
         String query = "SELECT * FROM user_roles "
                 + "INNER JOIN roles on user_roles.role_id = roles.role_id "
                 + "WHERE user_roles.user_id = ?";

@@ -21,7 +21,7 @@ public class AuthenticationFilter implements Filter {
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         guestsUrls.add("/login");
         guestsUrls.add("/registration");
         guestsUrls.add("/products");
@@ -34,7 +34,7 @@ public class AuthenticationFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-        String url = req.getServletPath();
+        var url = req.getServletPath();
         if (guestsUrls.contains(url)) {
             filterChain.doFilter(req, resp);
             return;

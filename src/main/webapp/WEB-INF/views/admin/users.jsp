@@ -13,7 +13,6 @@
                 <th>ID</th>
                 <th>NAME</th>
                 <th>LOGIN</th>
-                <th>PASSWORD</th>
                 <th></th>
             </tr>
         </thead>
@@ -28,9 +27,6 @@
                     </td>
                     <td>
                         <c:out value="${user.login}"/>
-                    </td>
-                    <td>
-                        <c:out value="${user.password}"/>
                     </td>
                     <td>
                         <a href="/internet_shop_war_exploded/admin/user/delete?userId=${user.id}">DELETE</a>

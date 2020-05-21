@@ -55,7 +55,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             order = getOrderFromResultSet(resultSet);
-            order = getOrderWithProducts(order);
+            getOrderWithProducts(order);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get order from DataBase");
         }
@@ -120,7 +120,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         return order;
     }
 
-    private Order getOrderWithProducts(Order order) throws SQLException {
+    private Order getOrderWithProducts(Order order) {
         String query = "SELECT * FROM orders_products "
                 + "INNER JOIN products on products.product_id = orders_products.product_id "
                 + "WHERE orders_products.order_id = ?";

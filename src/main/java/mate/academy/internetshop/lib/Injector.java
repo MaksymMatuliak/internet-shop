@@ -28,7 +28,7 @@ public class Injector {
         if (injectors.containsKey(mainPackageName)) {
             return injectors.get(mainPackageName);
         }
-        Injector injector = new Injector(mainPackageName);
+        var injector = new Injector(mainPackageName);
         injectors.put(mainPackageName, injector);
         return injector;
     }

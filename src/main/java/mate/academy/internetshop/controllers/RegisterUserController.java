@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.internetshop.lib.Injector;
-import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.model.Role;
 import mate.academy.internetshop.model.ShoppingCart;
 import mate.academy.internetshop.model.User;
@@ -39,7 +38,7 @@ public class RegisterUserController extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
             return;
         }
-        if (!userService.findByLogin(login).isEmpty()) {
+        if (userService.findByLogin(login).isPresent()) {
             req.setAttribute("message", "User with such login already exists!");
             req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
             return;
@@ -51,7 +50,7 @@ public class RegisterUserController extends HttpServlet {
             user.setPassword(password);
             user.setRoles(Set.of(Role.of("USER")));
             shoppingCartService.create(
-                    new ShoppingCart(userService.create(user).getId(), new LinkedList<Product>()));
+                    new ShoppingCart(userService.create(user).getId(), new LinkedList<>()));
             resp.sendRedirect(req.getContextPath() + "/login");
         } else {
             req.setAttribute("message", "Passwords are not the same!");

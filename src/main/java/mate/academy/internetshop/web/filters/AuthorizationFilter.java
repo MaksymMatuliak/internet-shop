@@ -26,7 +26,7 @@ public class AuthorizationFilter implements Filter {
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         protectedUrls.put("/admin/users", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/admin/create-product", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/admin/products", Set.of(Role.RoleName.ADMIN));
@@ -58,11 +58,9 @@ public class AuthorizationFilter implements Filter {
         User user = userService.get(userId);
         if (isAuthorized(user, protectedUrls.get(url))) {
             filterChain.doFilter(req, resp);
-            return;
         } else {
             LOGGER.warn("User who wanted to get access to admin resources" + user);
             req.getRequestDispatcher("/WEB-INF/views/access-denied.jsp").forward(req, resp);
-            return;
         }
     }
 
