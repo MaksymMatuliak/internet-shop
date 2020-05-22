@@ -19,12 +19,12 @@ public class IndexController extends HttpServlet {
             throws ServletException, IOException {
         Long id = (Long) req.getSession().getAttribute("userId");
         if (id == null) {
-            req.getRequestDispatcher("/WEB-INF/views/indexForGuests.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/index-for-guests.jsp").forward(req, resp);
             return;
         }
         User user = userService.get(id);
         if (user.getRoles().stream().anyMatch(x -> x.getRoleName().equals(Role.RoleName.ADMIN))) {
-            req.getRequestDispatcher("/WEB-INF/views/admin/indexForAdmin.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/admin/index-for-admin.jsp").forward(req, resp);
         } else {
             req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
         }

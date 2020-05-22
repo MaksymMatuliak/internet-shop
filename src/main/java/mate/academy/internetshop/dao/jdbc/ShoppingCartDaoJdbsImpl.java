@@ -30,7 +30,7 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
             generatedKeys.next();
             element.setId(generatedKeys.getLong(1));
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create shopping cart in DataBase");
+            throw new DataProcessingException("Can't create shopping cart in DataBase", e);
         }
         return element;
     }
@@ -50,7 +50,7 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
             shoppingCart = getShoppingCartFromResultSet(resultSet);
             getProductsForShoppingCart(shoppingCart);
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get shopping cart from DataBase");
+            throw new DataProcessingException("Can't get shopping cart from DataBase", e);
         }
         return Optional.of(shoppingCart);
     }
@@ -67,21 +67,21 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
                 shoppingCarts.add(getProductsForShoppingCart(shoppingCart));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get users in DataBase");
+            throw new DataProcessingException("Can't get shopping carts in DataBase", e);
         }
         return shoppingCarts;
     }
 
     @Override
     public ShoppingCart update(ShoppingCart element) {
-        String query = "DELETE FROM shopping_carts_products WHERE shopping_cart_id = ?";
-        String query2 = "INSERT INTO shopping_carts_products (shopping_cart_id, product_id) "
+        String delete = "DELETE FROM shopping_carts_products WHERE shopping_cart_id = ?";
+        String insert = "INSERT INTO shopping_carts_products (shopping_cart_id, product_id) "
                 + "VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
-            var statement = connection.prepareStatement(query);
+            var statement = connection.prepareStatement(delete);
             statement.setLong(1, element.getId());
             statement.executeUpdate();
-            var statement2 = connection.prepareStatement(query2);
+            var statement2 = connection.prepareStatement(insert);
             for (Product product : element.getProducts()) {
                 statement2.setLong(1, element.getId());
                 statement2.setLong(2, product.getId());
@@ -89,7 +89,7 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
             }
             return element;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't update shopping cart in DataBase");
+            throw new DataProcessingException("Can't update shopping cart in DataBase", e);
         }
     }
 
@@ -101,8 +101,25 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
             statement.setLong(1, id);
             return statement.execute();
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't delete shopping cart in DataBase");
+            throw new DataProcessingException("Can't delete shopping cart in DataBase", e);
         }
+    }
+
+    @Override
+    public ShoppingCart getByUserId(Long userId) {
+        String query = "SELECT * FROM shopping_carts WHERE shopping_carts.user_id = ?";
+        ShoppingCart shoppingCart;
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            var statement = connection.prepareStatement(query);
+            statement.setLong(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            shoppingCart = getShoppingCartFromResultSet(resultSet);
+            getProductsForShoppingCart(shoppingCart);
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't get shopping cart in DataBase", e);
+        }
+        return shoppingCart;
     }
 
     private ShoppingCart getShoppingCartFromResultSet(ResultSet resultSet) throws SQLException {
@@ -135,7 +152,7 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
             }
             shoppingCart.setProducts(productList);
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get shopping cart from DataBase");
+            throw new DataProcessingException("Can't get shopping cart from DataBase", e);
         }
         return shoppingCart;
     }

@@ -14,31 +14,33 @@ import mate.academy.internetshop.exceptions.DataProcessingException;
 import mate.academy.internetshop.lib.Dao;
 import mate.academy.internetshop.model.Order;
 import mate.academy.internetshop.model.Product;
+import mate.academy.internetshop.model.User;
 import mate.academy.internetshop.util.ConnectionUtil;
 
 @Dao
 public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public Order create(Order element) {
-        String query = "INSERT INTO orders (user_id) VALUES (?)";
-        String query2 = "INSERT INTO orders_products (product_id, order_id) VALUES (?, ?)";
+        String insertInOrders = "INSERT INTO orders (user_id) VALUES (?)";
+        String insertInOrdersProducts =
+                "INSERT INTO orders_products (product_id, order_id) VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement =
-                    connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                    connection.prepareStatement(insertInOrders, Statement.RETURN_GENERATED_KEYS);
             statement.setLong(1, element.getUserId());
             statement.executeUpdate();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             generatedKeys.next();
             Long key = generatedKeys.getLong(1);
             element.setId(key);
-            statement = connection.prepareStatement(query2);
+            statement = connection.prepareStatement(insertInOrdersProducts);
             for (Product product : element.getProducts()) {
                 statement.setLong(1, product.getId());
                 statement.setLong(2, key);
                 statement.executeUpdate();
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create order in DataBase");
+            throw new DataProcessingException("Can't create order in DataBase", e);
         }
         return element;
     }
@@ -57,7 +59,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             order = getOrderFromResultSet(resultSet);
             getOrderWithProducts(order);
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get order from DataBase");
+            throw new DataProcessingException("Can't get order from DataBase", e);
         }
         return Optional.of(order);
     }
@@ -74,20 +76,20 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 orders.add(getOrderWithProducts(order));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get orders in DataBase");
+            throw new DataProcessingException("Can't get orders in DataBase", e);
         }
         return orders;
     }
 
     @Override
     public Order update(Order element) {
-        String query = "DELETE FROM orders_products WHERE order_id = ?";
-        String query2 = "INSERT INTO orders_products (order_id, product_id) VALUES (?, ?);";
+        String delete = "DELETE FROM orders_products WHERE order_id = ?";
+        String insert = "INSERT INTO orders_products (order_id, product_id) VALUES (?, ?);";
         try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(delete);
             statement.setLong(1, element.getId());
             statement.executeUpdate();
-            PreparedStatement statement2 = connection.prepareStatement(query2);
+            PreparedStatement statement2 = connection.prepareStatement(insert);
             for (Product product : element.getProducts()) {
                 statement2.setLong(1, element.getId());
                 statement2.setLong(2, product.getId());
@@ -95,7 +97,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             }
             return element;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't update order in DataBase");
+            throw new DataProcessingException("Can't update order in DataBase", e);
         }
     }
 
@@ -107,8 +109,26 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.setLong(1, id);
             return statement.execute();
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't delete order in DataBase");
+            throw new DataProcessingException("Can't delete order in DataBase", e);
         }
+    }
+
+    @Override
+    public List<Order> getUserOrders(User user) {
+        String query = "SELECT * FROM orders WHERE orders.user_id = ?";
+        List<Order> orders = new ArrayList<>();
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, user.getId());
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Order order = getOrderFromResultSet(resultSet);
+                orders.add(getOrderWithProducts(order));
+            }
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't get orders in DataBase", e);
+        }
+        return orders;
     }
 
     private Order getOrderFromResultSet(ResultSet resultSet) throws SQLException {
@@ -141,7 +161,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             }
             order.setProducts(productList);
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get products from order in DataBase");
+            throw new DataProcessingException("Can't get products from order in DataBase", e);
         }
         return order;
     }

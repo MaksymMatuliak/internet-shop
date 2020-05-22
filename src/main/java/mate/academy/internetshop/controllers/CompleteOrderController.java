@@ -24,8 +24,7 @@ public class CompleteOrderController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
         Long userId = (Long) req.getSession().getAttribute("userId");
-        List<Product> products = shoppingCartService.getAllProducts(
-                shoppingCartService.getByUserId(userId));
+        List<Product> products = shoppingCartService.getByUserId(userId).getProducts();
         if (!products.isEmpty()) {
             orderService.completeOrder(products, userService.get(userId));
         }

@@ -38,12 +38,13 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public User create(User element) {
-        String query = "INSERT INTO users (name, login, password, salt) VALUES (?, ?, ?, ?)";
-        String query2 = "INSERT INTO user_roles (user_id, role_id) VALUES (?, 1);";
+        String insertInUsers =
+                "INSERT INTO users (name, login, password, salt) VALUES (?, ?, ?, ?)";
+        String insertInUserRoles = "INSERT INTO user_roles (user_id, role_id) VALUES (?, 1);";
         Long key;
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement =
-                    connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                    connection.prepareStatement(insertInUsers, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, element.getName());
             statement.setString(2, element.getLogin());
             statement.setString(3, element.getPassword());
@@ -53,11 +54,11 @@ public class UserDaoJdbcImpl implements UserDao {
             generatedKeys.next();
             key = generatedKeys.getLong(1);
             element.setId(key);
-            PreparedStatement statement2 = connection.prepareStatement(query2);
+            PreparedStatement statement2 = connection.prepareStatement(insertInUserRoles);
             statement2.setLong(1, key);
             statement2.execute();
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create user in DataBase");
+            throw new DataProcessingException("Can't create user in DataBase", e);
         }
         return element;
     }
@@ -76,7 +77,7 @@ public class UserDaoJdbcImpl implements UserDao {
             user = getUserFromResultSet(resultSet);
             getRolesForUser(user);
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get user from DataBase");
+            throw new DataProcessingException("Can't get user from DataBase", e);
         }
         return Optional.of(user);
     }
@@ -92,7 +93,7 @@ public class UserDaoJdbcImpl implements UserDao {
                 users.add(getUserFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get users in DataBase");
+            throw new DataProcessingException("Can't get users in DataBase", e);
         }
         return users;
     }
@@ -109,7 +110,7 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.executeUpdate();
             return element;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't update user in DataBase");
+            throw new DataProcessingException("Can't update user in DataBase", e);
         }
     }
 
@@ -121,7 +122,7 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.setLong(1, id);
             return statement.execute();
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't delete user in DataBase");
+            throw new DataProcessingException("Can't delete user in DataBase", e);
         }
     }
 
@@ -156,7 +157,7 @@ public class UserDaoJdbcImpl implements UserDao {
             }
             user.setRoles(roleSet);
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get user from DataBase");
+            throw new DataProcessingException("Can't get user from DataBase", e);
         }
         return user;
     }
