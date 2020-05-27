@@ -23,7 +23,7 @@
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">
-        <h2 align="center"><a href="${pageContext.request.contextPath}/shoppingCart" style="color: black">Shopping Cart</a></h2>
+        <h2 align="center"><a href="${pageContext.request.contextPath}/shopping-cart" style="color: black">Shopping Cart</a></h2>
     </div>
 
     <div class="p-3 mb-2 bg-light text-dark">

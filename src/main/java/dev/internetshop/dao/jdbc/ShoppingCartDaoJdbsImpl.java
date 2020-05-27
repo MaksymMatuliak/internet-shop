@@ -46,11 +46,10 @@ public class ShoppingCartDaoJdbsImpl implements ShoppingCartDao {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             shoppingCart = getShoppingCartFromResultSet(resultSet);
-            getProductsForShoppingCart(shoppingCart);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get shopping cart from DataBase", e);
         }
-        return Optional.of(shoppingCart);
+        return Optional.of(getProductsForShoppingCart(shoppingCart));
     }
 
     @Override

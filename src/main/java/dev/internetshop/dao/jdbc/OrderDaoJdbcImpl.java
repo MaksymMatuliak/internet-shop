@@ -58,11 +58,10 @@ public class OrderDaoJdbcImpl implements OrderDao {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             order = getOrderFromResultSet(resultSet);
-            getOrderWithProducts(order);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get order from DataBase", e);
         }
-        return Optional.of(order);
+        return Optional.of(getOrderWithProducts(order));
     }
 
     @Override

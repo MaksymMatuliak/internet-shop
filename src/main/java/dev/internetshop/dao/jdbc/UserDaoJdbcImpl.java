@@ -33,7 +33,7 @@ public class UserDaoJdbcImpl implements UserDao {
         } catch (SQLException e) {
             return Optional.empty();
         }
-        return Optional.of(user);
+        return Optional.of(getRolesForUser(user));
     }
 
     @Override
@@ -44,7 +44,9 @@ public class UserDaoJdbcImpl implements UserDao {
         Long key;
         try (Connection connection = ConnectionUtil.getConnection();
                     PreparedStatement statement = connection.prepareStatement(
-                            insertInUsers, Statement.RETURN_GENERATED_KEYS)) {
+                            insertInUsers, Statement.RETURN_GENERATED_KEYS);
+                    PreparedStatement statement2 =
+                            connection.prepareStatement(insertInUserRoles)) {
             statement.setString(1, element.getName());
             statement.setString(2, element.getLogin());
             statement.setString(3, element.getPassword());
@@ -54,7 +56,6 @@ public class UserDaoJdbcImpl implements UserDao {
             generatedKeys.next();
             key = generatedKeys.getLong(1);
             element.setId(key);
-            PreparedStatement statement2 = connection.prepareStatement(insertInUserRoles);
             statement2.setLong(1, key);
             statement2.execute();
         } catch (SQLException e) {
@@ -75,11 +76,10 @@ public class UserDaoJdbcImpl implements UserDao {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             user = getUserFromResultSet(resultSet);
-            getRolesForUser(user);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get user from DataBase", e);
         }
-        return Optional.of(user);
+        return Optional.of(getRolesForUser(user));
     }
 
     @Override
@@ -141,7 +141,7 @@ public class UserDaoJdbcImpl implements UserDao {
         return user;
     }
 
-    private void getRolesForUser(User user) {
+    private User getRolesForUser(User user) {
         String query = "SELECT * FROM user_roles "
                 + "INNER JOIN roles on user_roles.role_id = roles.role_id "
                 + "WHERE user_roles.user_id = ?";
@@ -159,5 +159,6 @@ public class UserDaoJdbcImpl implements UserDao {
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get user roles from DataBase", e);
         }
+        return user;
     }
 }
