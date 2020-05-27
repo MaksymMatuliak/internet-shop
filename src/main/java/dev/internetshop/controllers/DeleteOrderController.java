@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class DeleteOrderController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("dev.internetshop");
-    private OrderService orderService = (OrderService) INJECTOR.getInstance(OrderService.class);
+    private final OrderService orderService = (OrderService) INJECTOR.getInstance(OrderService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

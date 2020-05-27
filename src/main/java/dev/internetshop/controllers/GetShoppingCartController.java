@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GetShoppingCartController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("dev.internetshop");
-    private ShoppingCartService shoppingCartService =
+    private final ShoppingCartService shoppingCartService =
             (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
 
     @Override

@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CompleteOrderController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("dev.internetshop");
-    private OrderService orderService =
+    private final OrderService orderService =
             (OrderService) INJECTOR.getInstance(OrderService.class);
-    private ShoppingCartService shoppingCartService =
+    private final ShoppingCartService shoppingCartService =
             (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
-    private UserService userService =
+    private final UserService userService =
             (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
