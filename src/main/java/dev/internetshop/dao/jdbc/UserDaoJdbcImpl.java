@@ -23,8 +23,8 @@ public class UserDaoJdbcImpl implements UserDao {
     public Optional<User> findByLogin(String login) {
         String query = "SELECT * FROM users WHERE users.login = ?";
         User user;
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -42,9 +42,9 @@ public class UserDaoJdbcImpl implements UserDao {
                 "INSERT INTO users (name, login, password, salt) VALUES (?, ?, ?, ?)";
         String insertInUserRoles = "INSERT INTO user_roles (user_id, role_id) VALUES (?, 1);";
         Long key;
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement =
-                    connection.prepareStatement(insertInUsers, Statement.RETURN_GENERATED_KEYS);
+        try (Connection connection = ConnectionUtil.getConnection();
+                    PreparedStatement statement = connection.prepareStatement(
+                            insertInUsers, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, element.getName());
             statement.setString(2, element.getLogin());
             statement.setString(3, element.getPassword());
@@ -69,8 +69,8 @@ public class UserDaoJdbcImpl implements UserDao {
                 + "ON users.user_id = user_roles.user_id "
                 + "WHERE users.user_id = ?";
         User user;
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -86,8 +86,8 @@ public class UserDaoJdbcImpl implements UserDao {
     public List<User> getAll() {
         String query = "SELECT * FROM users";
         List<User> users = new ArrayList<>();
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 users.add(getUserFromResultSet(resultSet));
@@ -101,8 +101,8 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public User update(User element) {
         String query = "UPDATE users SET name = ?, login = ?, password = ?  WHERE user_id = ?";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, element.getName());
             statement.setString(2, element.getLogin());
             statement.setString(3, element.getPassword());
@@ -117,8 +117,8 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public boolean delete(Long id) {
         String query = "DELETE FROM users WHERE user_id = ?";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             return statement.execute();
         } catch (SQLException e) {
@@ -141,13 +141,13 @@ public class UserDaoJdbcImpl implements UserDao {
         return user;
     }
 
-    private User getRolesForUser(User user) {
+    private void getRolesForUser(User user) {
         String query = "SELECT * FROM user_roles "
                 + "INNER JOIN roles on user_roles.role_id = roles.role_id "
                 + "WHERE user_roles.user_id = ?";
         Set<Role> roleSet = new HashSet<>();
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, user.getId());
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -157,8 +157,7 @@ public class UserDaoJdbcImpl implements UserDao {
             }
             user.setRoles(roleSet);
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get user from DataBase", e);
+            throw new DataProcessingException("Can't get user roles from DataBase", e);
         }
-        return user;
     }
 }
