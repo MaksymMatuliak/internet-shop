@@ -13,7 +13,7 @@
             <th scope="col">ID</th>
             <th scope="col">NAME</th>
             <th scope="col">PRICE</th>
-            <th scope="col">DELETE</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <c:forEach var="product" items="${products}">
